@@ -11,7 +11,11 @@ const socket = io(`http://127.0.0.1:${port}`, { reconnectionDelay: 2000, transpo
 const call = (...args) => new Promise((resolve) => socket.emit(...args, resolve));
 const done = (msg) => { console.log(`[railway-setup] ${msg}`); socket.close(); };
 
-socket.once("connect", async () => {
+// The server registers its handlers only after sending "info", so an emit
+// right on "connect" would be dropped.
+socket.once("info", () => setTimeout(run, 500));
+
+async function run() {
     if (!(await call("needSetup"))) return done("admin already exists, skipping");
     const setup = await call("setup", username, password);
     if (!setup.ok) return done(`setup failed: ${setup.msg}`);
@@ -20,4 +24,4 @@ socket.once("connect", async () => {
     const { data } = await call("getSettings");
     const saved = await call("setSettings", { ...data, trustProxy: true, primaryBaseURL: baseURL || data.primaryBaseURL }, password);
     done(`admin "${username}" created${saved.ok ? "" : `, settings not saved: ${saved.msg}`}`);
-});
+}

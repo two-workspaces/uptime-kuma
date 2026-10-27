@@ -4,5 +4,6 @@
   "description": "Monitor websites, APIs and servers, get alerts, publish status pages",
   "category": "Observability",
   "image": "https://raw.githubusercontent.com/two-workspaces/uptime-kuma/main/icon.svg",
-  "card_desc": "Uptime Kuma: self-hosted monitoring for websites, APIs, ports, DNS, Docker hosts and more, with 90+ notification channels and public status pages. Runs Uptime Kuma 2.5.8 on SQLite with the admin created on first boot."
+  "card_desc": "Uptime Kuma: self-hosted monitoring for websites, APIs, ports, DNS, Docker hosts and more, with 90+ notification channels and public status pages. Runs Uptime Kuma 2.5.8 on SQLite with the admin created on first boot.",
+  "id": "a0dc3fa8-5ff0-4676-8668-e162d193be2a"
 }
