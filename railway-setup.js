@@ -22,6 +22,9 @@ async function run() {
     const login = await call("login", { username, password, token: "" });
     if (!login.ok) return done(`login failed: ${login.msg}`);
     const { data } = await call("getSettings");
-    const saved = await call("setSettings", { ...data, trustProxy: true, primaryBaseURL: baseURL || data.primaryBaseURL }, password);
+    // Same defaults the Settings page fills in before its first save.
+    const defaults = { checkUpdate: true, searchEngineIndex: false, entryPage: "dashboard", nscd: true,
+        keepDataPeriodDays: 180, tlsExpiryNotifyDays: [7, 14, 21], domainExpiryNotifyDays: [7, 14, 21] };
+    const saved = await call("setSettings", { ...defaults, ...data, trustProxy: true, primaryBaseURL: baseURL || data.primaryBaseURL }, password);
     done(`admin "${username}" created${saved.ok ? "" : `, settings not saved: ${saved.msg}`}`);
 }
