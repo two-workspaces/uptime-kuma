@@ -2,13 +2,13 @@
 
 [![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/uptime-kuma-monitor?referralCode=sLjDXb&utm_medium=integration&utm_source=button&utm_campaign=uptime-kuma-monitor)
 
-[Uptime Kuma](https://uptime.kuma.pet/) is an open-source, self-hosted monitoring tool. It checks your websites, APIs, TCP ports, DNS records, databases and more every few seconds, alerts you through 90+ notification services (Telegram, Discord, Slack, webhooks, email and others) when something goes down, and publishes public status pages for your users. This template runs Uptime Kuma 2.5.8 on SQLite with the data on a Railway volume and creates your admin account on first boot.
+[Uptime Kuma](https://uptime.kuma.pet/) is an open-source, self-hosted monitoring tool. It checks your websites, APIs, TCP ports, DNS records, databases and more every few seconds, alerts you through 90+ notification services (Telegram, Discord, Slack, webhooks, email and others) when something goes down, and publishes public status pages for your users. This template runs Uptime Kuma 2.5.9 on SQLite with the data on a Railway volume and creates your admin account on first boot.
 
 ## About Hosting Uptime Kuma
 
 The stack is one service with one volume.
 
-- **Upstream's image, pinned.** Uptime Kuma runs the official `louislam/uptime-kuma:2.5.8-slim` image (SQLite, no bundled Chromium or MariaDB), not `latest`. The wrapper ([source](https://github.com/two-workspaces/uptime-kuma)) only adds a first-boot step.
+- **Upstream's image, pinned.** Uptime Kuma runs the official `louislam/uptime-kuma:2.5.9-slim` image (SQLite, no bundled Chromium or MariaDB), not `latest`. The wrapper ([source](https://github.com/two-workspaces/uptime-kuma)) only adds a first-boot step.
 - **No open setup pages.** A fresh Uptime Kuma asks the first visitor to pick a database and create the admin. This template picks SQLite and creates the admin from `KUMA_ADMIN_USERNAME` and the generated `KUMA_ADMIN_PASSWORD` before the URL goes live.
 - **Ready for Railway's proxy.** First boot turns on "trust proxy", so logins and logs show your visitors' real IPs, and sets the primary base URL to your Railway domain, so links in notifications point to your dashboard.
 - **Data on the volume.** Monitors, heartbeat history, status pages and settings live in `/app/data` and survive redeploys and upgrades.
